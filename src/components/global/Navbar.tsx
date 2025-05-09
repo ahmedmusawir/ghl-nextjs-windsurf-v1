@@ -2,63 +2,57 @@
 
 import { ReactNode, useEffect, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { MenuIcon } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { usePathname } from "next/navigation";
-import { MenuIcon } from "lucide-react";
-import { ShoppingBagIcon } from "@heroicons/react/24/outline";
-import { useCartStore } from "@/store/useCartStore";
-import Spinner from "../common/Spinner";
 
 const Navbar = () => {
-  const pathname = usePathname();
-  // Access Zustand store
-  const { cartDetails, isLoading } = useCartStore();
-  const cartItemCount = cartDetails().length;
-  // console.log("Cart Item Count [Navbar]", cartItemCount);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 20;
+      if (isScrolled !== scrolled) {
+        setScrolled(isScrolled);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [scrolled]);
 
   interface NavLinkProps {
     href: string;
     children: ReactNode;
   }
 
-  // PREPARING THE NAVLINK WITH ACTIVE LINK
-  const NavLink = ({ href, children }: NavLinkProps) => {
-    const isActive = pathname === href;
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
+  const NavLink = ({ href, children }: NavLinkProps) => {
     return (
-      <Link
-        href={href}
-        className={`text-white dark:text-white px-3 py-2 text-sm font-medium hover:bg-gray-700 hover:text-white ${
-          isActive
-            ? "border-b-4 border-indigo-500 text-gray-900"
-            : "border-b-4 border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
-        }`}
+      <button
+        onClick={() => scrollToSection(href)}
+        className="text-white px-3 py-2 text-sm font-medium hover:text-gray-200 border-b-2 border-transparent hover:border-white transition-all duration-200"
       >
         {children}
-      </Link>
+      </button>
     );
   };
 
-  if (isLoading) {
-    return (
-      <div>
-        <Spinner />
-      </div>
-    );
-  }
-
   return (
-    <div className="bg-slate-700 dark:bg-slate-700 py-2 px-5 flex justify-between">
-      <Link href={"/"}>
+    <div className={`fixed top-0 left-0 right-0 z-[100] px-5 py-4 flex justify-between items-center transition-all duration-300 ${
+      scrolled ? 'bg-gradient-to-r from-blue-900/90 to-blue-800/90 backdrop-blur-sm shadow-lg' : 'bg-transparent'
+    }`}>
+      <button onClick={() => scrollToSection("hero")} className="cursor-pointer">
         <Image
           src={
             "https://res.cloudinary.com/dyb0qa58h/image/upload/v1696245158/company-4-logo_syxli0.png"
@@ -67,52 +61,51 @@ const Navbar = () => {
           width={40}
           height={40}
         />
-      </Link>
+      </button>
 
       {/* NAVIGATION */}
-      <nav className="hidden sm:ml-6 sm:flex flex-grow justify-center items-center">
-        <NavLink href="/shop">Shop</NavLink>
-        <NavLink href="/admin-dashboard">Admin</NavLink>
-        <NavLink href="/customer-dashboard">Customer</NavLink>
-        <NavLink href="/demo">Demo</NavLink>
-        <NavLink href="/template">Template</NavLink>
+      <nav className="hidden md:flex flex-grow justify-center items-center">
+        <NavLink href="hero">Home</NavLink>
+        <NavLink href="best-offer">Best Offers</NavLink>
+        <NavLink href="why-us">Why Us</NavLink>
+        <NavLink href="testimonials">Testimonials</NavLink>
+        <NavLink href="faq">FAQ</NavLink>
       </nav>
 
-      {/* DARK MODE BUTTON */}
-      <div className="flex items-center">
-        <span className="mr-3 text-white">fake-user@email.com</span>
-        {/* {user && <span className="mr-3 text-white">{user.email}</span>} */}
-        {/* SHOPPING BAG ICON */}
-        <div className="ml-4 flow-root lg:ml-6">
-          <Link href="/cart" className="group -m-2 flex items-center p-2">
-            <ShoppingBagIcon
-              aria-hidden="true"
-              className="size-8 shrink-0 text-gray-300 group-hover:text-gray-50"
-            />
-            <span className="ml-1 mr-3 text-lg font-medium text-gray-300 group-hover:text-gray-50">
-              {cartItemCount}
-            </span>
-            <span className="sr-only">items in cart, view bag</span>
-          </Link>
-        </div>
-        {/* DROP DOWN MENU */}
+      {/* MOBILE MENU BUTTON */}
+      <div className="md:hidden">
         <DropdownMenu>
           <DropdownMenuTrigger>
-            {/* <button className="text-gray-500 pt-1"> */}
             <MenuIcon
               className="h-8 w-8 text-white border-2 border-white p-1"
               aria-hidden="true"
             />
-            {/* </button> */}
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="bg-white dark:bg-slate-600">
-            <DropdownMenuLabel>My Account</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <Link href={"/profile"}>Profile</Link>
+          <DropdownMenuContent className="bg-blue-900/95 backdrop-blur-sm border-0 p-2 mt-2">
+            <DropdownMenuItem className="focus:bg-blue-800/50 rounded-lg">
+              <button onClick={() => scrollToSection("hero")} className="w-full text-left text-white py-2">
+                Home
+              </button>
             </DropdownMenuItem>
-            <DropdownMenuItem>
-              {/* <Logout /> Use the Logout component */}
+            <DropdownMenuItem className="focus:bg-blue-800/50 rounded-lg">
+              <button onClick={() => scrollToSection("best-offer")} className="w-full text-left text-white py-2">
+                Best Offers
+              </button>
+            </DropdownMenuItem>
+            <DropdownMenuItem className="focus:bg-blue-800/50 rounded-lg">
+              <button onClick={() => scrollToSection("why-us")} className="w-full text-left text-white py-2">
+                Why Us
+              </button>
+            </DropdownMenuItem>
+            <DropdownMenuItem className="focus:bg-blue-800/50 rounded-lg">
+              <button onClick={() => scrollToSection("testimonials")} className="w-full text-left text-white py-2">
+                Testimonials
+              </button>
+            </DropdownMenuItem>
+            <DropdownMenuItem className="focus:bg-blue-800/50 rounded-lg">
+              <button onClick={() => scrollToSection("faq")} className="w-full text-left text-white py-2">
+                FAQ
+              </button>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

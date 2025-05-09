@@ -49,6 +49,7 @@ export default async function RootLayout({
               : "This is a Layout container. Must have children"}
           </Main>
           <Footer />
+          <Cart />
         </div>
         {/* <Toaster /> */}
       </body>
