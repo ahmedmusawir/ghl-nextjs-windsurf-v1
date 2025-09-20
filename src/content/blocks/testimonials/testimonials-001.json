@@ -1,0 +1,10 @@
+{
+  "blockId": "testimonials-001",
+  "type": "Testimonials",
+  "props": {
+    "items": [
+      { "quote": "Flawless trip—already planning the next one!", "author": "Samir" },
+      { "quote": "Great deals and even better support.", "author": "Aisha" }
+    ]
+  }
+}

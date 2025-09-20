@@ -1,21 +1,11 @@
 "use client";
 
 import { Button } from "../ui/button";
-
-// Hero section data
-const heroData = {
-  title: "EXPLORE THE WORLD",
-  subtitle: "Embark on Unforgettable Adventures: Discover Your World with Us, Where Every Journey Begins",
-  cta: {
-    text: "Subscribe to Our Newsletter",
-    placeholder: "Enter your email"
-  },
-  backgroundImage: "https://assets.cdn.filesafe.space/RBd9FbapcWZfcViIJqu2/media/65f9fecc1169737af7215543.png"
-};
+import { heroData } from "@/data/hero";
 
 const Hero = () => {
   return (
-    <div id="hero" className="relative min-h-screen flex items-center justify-center text-center text-white -mt-[0px]">
+    <div id="hero" className="relative min-h-screen flex items-center justify-center text-center text-white -mt-[0px] scroll-mt-24">
       {/* Background Image */}
       <div 
         className="absolute inset-0 z-0"

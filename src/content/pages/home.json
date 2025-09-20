@@ -1,0 +1,10 @@
+{
+  "slug": "home",
+  "title": "Home",
+  "blocks": [
+    { "blockId": "best-offer-123" },
+    { "blockId": "why-us-101" },
+    { "blockId": "testimonials-001" },
+    { "blockId": "faq-001" }
+  ]
+}

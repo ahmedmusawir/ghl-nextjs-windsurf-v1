@@ -9,6 +9,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { navigationData } from "@/data/navigation";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -54,10 +55,8 @@ const Navbar = () => {
     }`}>
       <button onClick={() => scrollToSection("hero")} className="cursor-pointer">
         <Image
-          src={
-            "https://res.cloudinary.com/dyb0qa58h/image/upload/v1696245158/company-4-logo_syxli0.png"
-          }
-          alt="Cyberize"
+          src={navigationData.logo.src}
+          alt={navigationData.logo.alt}
           width={40}
           height={40}
         />
@@ -65,11 +64,11 @@ const Navbar = () => {
 
       {/* NAVIGATION */}
       <nav className="hidden md:flex flex-grow justify-center items-center">
-        <NavLink href="hero">Home</NavLink>
-        <NavLink href="best-offer">Best Offers</NavLink>
-        <NavLink href="why-us">Why Us</NavLink>
-        <NavLink href="testimonials">Testimonials</NavLink>
-        <NavLink href="faq">FAQ</NavLink>
+        {navigationData.links.map((link) => (
+          <NavLink key={link.id} href={link.id}>
+            {link.label}
+          </NavLink>
+        ))}
       </nav>
 
       {/* MOBILE MENU BUTTON */}
@@ -82,31 +81,16 @@ const Navbar = () => {
             />
           </DropdownMenuTrigger>
           <DropdownMenuContent className="bg-blue-900/95 backdrop-blur-sm border-0 p-2 mt-2">
-            <DropdownMenuItem className="focus:bg-blue-800/50 rounded-lg">
-              <button onClick={() => scrollToSection("hero")} className="w-full text-left text-white py-2">
-                Home
-              </button>
-            </DropdownMenuItem>
-            <DropdownMenuItem className="focus:bg-blue-800/50 rounded-lg">
-              <button onClick={() => scrollToSection("best-offer")} className="w-full text-left text-white py-2">
-                Best Offers
-              </button>
-            </DropdownMenuItem>
-            <DropdownMenuItem className="focus:bg-blue-800/50 rounded-lg">
-              <button onClick={() => scrollToSection("why-us")} className="w-full text-left text-white py-2">
-                Why Us
-              </button>
-            </DropdownMenuItem>
-            <DropdownMenuItem className="focus:bg-blue-800/50 rounded-lg">
-              <button onClick={() => scrollToSection("testimonials")} className="w-full text-left text-white py-2">
-                Testimonials
-              </button>
-            </DropdownMenuItem>
-            <DropdownMenuItem className="focus:bg-blue-800/50 rounded-lg">
-              <button onClick={() => scrollToSection("faq")} className="w-full text-left text-white py-2">
-                FAQ
-              </button>
-            </DropdownMenuItem>
+            {navigationData.links.map((link) => (
+              <DropdownMenuItem key={link.id} className="focus:bg-blue-800/50 rounded-lg">
+                <button 
+                  onClick={() => scrollToSection(link.id)} 
+                  className="w-full text-left text-white py-2"
+                >
+                  {link.label}
+                </button>
+              </DropdownMenuItem>
+            ))}
           </DropdownMenuContent>
         </DropdownMenu>
       </div>

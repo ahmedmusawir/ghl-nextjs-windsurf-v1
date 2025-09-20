@@ -1,11 +1,8 @@
 import Page from "@/components/common/Page";
-import BestOffer from "@/components/home/BestOffer";
-import Faq from "@/components/home/Faq";
 import Hero from "@/components/home/Hero";
-import Testimonials from "@/components/home/Testimonials";
-import WhyUs from "@/components/home/WhyUs";
 import Head from "next/head";
 import React, { ReactNode } from "react";
+import { BlockRenderer } from "@/components/BlockRenderer";
 
 const HomePageContent = () => {
   return (
@@ -16,10 +13,11 @@ const HomePageContent = () => {
       </Head>
       <Page className={""} FULL={true} customYMargin="my-0">
         <Hero />
-        <BestOffer />
-        <WhyUs />
-        <Testimonials />
-        <Faq />
+        {/* Render remaining sections from content JSON */}
+        {/* Page JSON: /src/content/pages/home.json */}
+        {/* Instances under: /src/content/blocks/[type-slug]/[block-id].json */}
+        {/* BestOffer / WhyUs / Testimonials / Faq now data-driven */}
+        <BlockRenderer page="home" />
       </Page>
     </>
   );
