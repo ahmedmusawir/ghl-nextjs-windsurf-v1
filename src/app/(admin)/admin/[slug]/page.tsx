@@ -1,9 +1,20 @@
 import { readPage, readBlock } from "../_lib/contentStore";
 import { BlockListClient } from "../_components";
+import { notFound } from "next/navigation";
 
-export default async function AdminPage({ params }: { params: { slug: string } }) {
-  const { slug } = params;
-  const page = await readPage(slug);
+export default async function AdminPage(
+  props:
+    | { params: { slug?: string } }
+    | { params: Promise<{ slug?: string }> }
+) {
+  // Support both Next 15 (Promise-based params) and prior (object params)
+  const rawParams: any = (props as any).params;
+  const resolvedParams = typeof rawParams?.then === "function" ? await rawParams : rawParams;
+  const slug: string | undefined = resolvedParams?.slug;
+  if (!slug) return notFound();
+
+  const page = await readPage(slug).catch(() => null);
+  if (!page) return notFound();
 
   // Read minimal block info for display (type + meta.label) without altering files
   const blocks = await Promise.all(

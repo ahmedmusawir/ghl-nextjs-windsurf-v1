@@ -3,12 +3,30 @@
   "type": "Faq",
   "props": {
     "items": [
-      { "q": "Can I change my dates?", "a": "Most stays allow free changes up to 48h prior." },
-      { "q": "Do prices include taxes?", "a": "Yes—final price shown at checkout." },
-      { "q": "Do prices include openai?", "a": "Yes—final price shown at checkout." },
-      { "q": "Do prices include claude?", "a": "Yes—final price shown at checkout." },
-      { "q": "Do prices include gemini?", "a": "Yes—final price shown at checkout." },
-      { "q": "Do prices include mistral?", "a": "Yes—final price shown at checkout." }
+      {
+        "q": "Can I change my dates?",
+        "a": "Most stays allow free changes up to 48h prior."
+      },
+      {
+        "q": "Do prices include taxes?",
+        "a": "Yes—final price shown at checkout."
+      },
+      {
+        "q": "Do prices include openai?",
+        "a": "Yes—final price shown at checkout."
+      },
+      {
+        "q": "Do prices include claude?",
+        "a": "Yes—final price shown at checkout."
+      },
+      {
+        "q": "Do prices include gemini?",
+        "a": "Yes—final price shown at checkout."
+      },
+      {
+        "q": "Do prices include mistral?",
+        "a": "Yes—final price shown at checkout."
+      }
     ]
   }
 }
