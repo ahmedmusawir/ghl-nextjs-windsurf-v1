@@ -3,8 +3,18 @@
   "type": "Testimonials",
   "props": {
     "items": [
-      { "quote": "Flawless trip—already planning the next one!", "author": "Samir" },
-      { "quote": "Great deals and even better support.", "author": "Aisha" }
+      {
+        "quote": "Flawless trip—already planning the next one!",
+        "author": "Samir"
+      },
+      {
+        "quote": "Great deals and even better support.",
+        "author": "Aisha"
+      },
+      {
+        "quote": "Moo Hoo ha ha ha ",
+        "author": "Da Moose"
+      }
     ]
   }
 }

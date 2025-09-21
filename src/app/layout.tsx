@@ -42,7 +42,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <div className="flex flex-col min-h-screen">
-          <Navbar />
+          {/* <Navbar /> */}
           <Main className="flex flex-col">
             {children
               ? children

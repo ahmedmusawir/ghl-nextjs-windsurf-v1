@@ -1,4 +1,7 @@
+"use client";
+
 import React from "react";
+import { useEffect, useState } from "react";
 import {
   Command,
   CommandDialog,
@@ -21,6 +24,27 @@ import {
 import Link from "next/link";
 
 const Sidebar = () => {
+  const [pages, setPages] = useState<{ slug: string; title?: string }[]>([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    let active = true;
+    (async () => {
+      try {
+        setLoading(true);
+        const res = await fetch("/admin/api/pages", { cache: "no-store" });
+        if (!res.ok) return;
+        const data = (await res.json()) as { slug: string; title?: string }[];
+        if (active) setPages(data);
+      } finally {
+        if (active) setLoading(false);
+      }
+    })();
+    return () => {
+      active = false;
+    };
+  }, []);
+
   return (
     <Command className="bg-secondary">
       <CommandInput placeholder="Type a command or search..." />
@@ -35,6 +59,20 @@ const Sidebar = () => {
             <Newspaper className="mr-2 h-4 w-4" />
             <Link href="/booking">New Booking</Link>
           </CommandItem>
+        </CommandGroup>
+        <CommandSeparator />
+        <CommandGroup heading="Pages">
+          {loading && (
+            <CommandItem>
+              <span className="text-slate-500 text-sm">Loading…</span>
+            </CommandItem>
+          )}
+          {pages.map((p) => (
+            <CommandItem key={p.slug}>
+              <Folders className="mr-2 h-4 w-4" />
+              <Link href={`/admin/${p.slug}`}>{p.title || p.slug}</Link>
+            </CommandItem>
+          ))}
         </CommandGroup>
         <CommandSeparator />
         <CommandGroup heading="Settings">

@@ -12,11 +12,11 @@ interface LayoutProps {
 const MemberLayout = ({ children }: LayoutProps) => {
   return (
     <div className="flex flex-col min-h-screen">
-      <NavbarAdmin />
+      <Navbar />
       <section className="flex flex-1">
-        <div className="hidden md:block h-auto flex-shrink-0 border-4 w-[25rem]">
+        {/* <div className="hidden md:block h-auto flex-shrink-0 border-4 w-[25rem]">
           <Sidebar />
-        </div>
+        </div> */}
         <div className="flex-grow">{children}</div>
       </section>
     </div>
