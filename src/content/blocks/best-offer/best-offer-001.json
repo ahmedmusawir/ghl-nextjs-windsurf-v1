@@ -1,0 +1,19 @@
+{
+  "blockId": "best-offer-001",
+  "type": "BestOffer",
+  "props": {
+    "title": "Deals for Your Next Getaway To Hell",
+    "subtitle": "Save more when you travel smart.",
+    "bullets": [
+      "Up to 40% off resorts",
+      "Flexible cancellations",
+      "24/7 concierge"
+    ],
+    "ctaText": "Explore Offers",
+    "ctaHref": "/deals"
+  },
+  "meta": {
+    "label": "Homepage BestOffer v1",
+    "category": "promo"
+  }
+}

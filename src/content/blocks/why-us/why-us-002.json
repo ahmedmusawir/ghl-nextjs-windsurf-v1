@@ -1,0 +1,21 @@
+{
+  "blockId": "why-us-002",
+  "type": "WhyUs",
+  "props": {
+    "heading": "Why Travel With Us",
+    "points": [
+      {
+        "title": "Handpicked Stays",
+        "desc": "Only vetted properties make the list."
+      },
+      {
+        "title": "Transparent Pricing",
+        "desc": "No hidden fees—ever."
+      },
+      {
+        "title": "Local Experts",
+        "desc": "Insider tips in every city."
+      }
+    ]
+  }
+}

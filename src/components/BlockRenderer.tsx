@@ -43,7 +43,7 @@ export async function BlockRenderer({ page }: { page: string }) {
 
   // 2) Resolve each block instance JSON and render via registry
   const nodes = await Promise.all(
-    pageData.blocks.map(async ({ blockId }) => {
+    pageData.blocks.map(async ({ blockId }, index) => {
       const typeSlug = typeSlugFromId(blockId); // e.g., "best-offer"
       const blockPath = blocksDir(typeSlug, `${blockId}.json`);
       const instance = await readJSON<BlockInstance>(blockPath);
@@ -51,12 +51,12 @@ export async function BlockRenderer({ page }: { page: string }) {
       const Component = BlockRegistry[instance.type];
       if (!Component) {
         return (
-          <div key={blockId} className="text-red-600">
+          <div key={`${blockId}-${index}`} className="text-red-600">
             Unknown block type: {instance.type}
           </div>
         );
       }
-      return <Component key={blockId} {...instance.props} />;
+      return <Component key={`${blockId}-${index}`} {...instance.props} />;
     })
   );
 

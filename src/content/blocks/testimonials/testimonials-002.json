@@ -1,0 +1,16 @@
+{
+  "blockId": "testimonials-002",
+  "type": "Testimonials",
+  "props": {
+    "items": [
+      {
+        "quote": "Flawless trip—already planning the next one!",
+        "author": "Samir"
+      },
+      {
+        "quote": "Moo Hoo ha ha ha ",
+        "author": "Da Moose"
+      }
+    ]
+  }
+}

@@ -1,6 +1,6 @@
 {
-  "slug": "home",
-  "title": "Home",
+  "slug": "our-story",
+  "title": "Our Story",
   "blocks": [
     { "blockId": "best-offer-001" },
     { "blockId": "why-us-001" },
