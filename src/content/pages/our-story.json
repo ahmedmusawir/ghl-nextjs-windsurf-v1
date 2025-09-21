@@ -2,9 +2,9 @@
   "slug": "our-story",
   "title": "Our Story",
   "blocks": [
-    { "blockId": "best-offer-001" },
-    { "blockId": "why-us-001" },
-    { "blockId": "testimonials-001" },
-    { "blockId": "faq-001" }
+    { "blockId": "best-offer-002" },
+    { "blockId": "why-us-002" },
+    { "blockId": "testimonials-002" },
+    { "blockId": "faq-002" }
   ]
 }

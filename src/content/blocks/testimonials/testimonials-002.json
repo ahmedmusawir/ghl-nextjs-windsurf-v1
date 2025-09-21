@@ -11,6 +11,8 @@
         "quote": "Moo Hoo ha ha ha ",
         "author": "Da Moose"
       }
-    ]
+    ],
+    "bg": "bg-slate-50",
+    "variant": "minimal"
   }
 }

@@ -7,6 +7,15 @@ export default {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  safelist: [
+    // Backgrounds, borders, and text colors coming from JSON props
+    { pattern: /(bg|text|border|from|to|via)-(slate|gray|zinc|neutral|stone|red|orange|amber|yellow|lime|green|emerald|teal|cyan|sky|blue|indigo|violet|purple|fuchsia|pink|rose)-(50|100|200|300|400|500|600|700|800|900)/ },
+    { pattern: /(bg|text)-(white|black)/ },
+    // Common utility classes used via props
+    { pattern: /text-(left|center|right|justify)/ },
+    { pattern: /bg-transparent/ },
+    { pattern: /border/ },
+  ],
   theme: {
     extend: {
       colors: {
@@ -65,3 +74,4 @@ export default {
     require("tailwindcss-animate"),
   ],
 } satisfies Config;
+

@@ -6,11 +6,23 @@ type BestOfferProps = {
   bullets?: string[];
   ctaText?: string;
   ctaHref?: string;
+  // Style props
+  bg?: string; // background color class
+  fg?: string; // text color class
+  variant?: "solid" | "outline" | "minimal";
+  align?: "left" | "center";
 };
 
-const BestOffer = ({ title, subtitle, bullets = [], ctaText, ctaHref }: BestOfferProps) => {
+const BestOffer = ({ title, subtitle, bullets = [], ctaText, ctaHref, bg = "bg-white", fg = "text-gray-900", variant = "solid", align = "left" }: BestOfferProps) => {
+  const alignClass = align === "center" ? "text-center" : "text-left";
+  const variantClass =
+    variant === "outline"
+      ? "border border-gray-200"
+      : variant === "minimal"
+      ? "bg-transparent"
+      : "";
   return (
-    <section id="best-offer" className="relative mx-auto max-w-7xl px-6 py-20 scroll-mt-24">
+    <section id="best-offer" className={`relative mx-auto max-w-7xl px-6 py-20 scroll-mt-24 ${bg} ${fg} ${alignClass} ${variantClass}`}>
       <div className="relative rounded-3xl bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 p-12 shadow-xl shadow-blue-100/50 border border-blue-100/20">
         <div className="text-center max-w-3xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent leading-tight">
@@ -59,3 +71,4 @@ const BestOffer = ({ title, subtitle, bullets = [], ctaText, ctaHref }: BestOffe
 };
 
 export default BestOffer;
+

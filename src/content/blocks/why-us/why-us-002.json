@@ -16,6 +16,8 @@
         "title": "Local Experts",
         "desc": "Insider tips in every city."
       }
-    ]
+    ],
+    "bg": "bg-gray-0",
+    "fg": "text-red-500"
   }
 }

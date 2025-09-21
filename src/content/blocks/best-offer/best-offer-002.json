@@ -10,7 +10,10 @@
       "24/7 concierge"
     ],
     "ctaText": "Explore Offers",
-    "ctaHref": "/deals"
+    "ctaHref": "/deals",
+    "bg": "bg-gray-500",
+    "align": "center",
+    "variant": ""
   },
   "meta": {
     "label": "Homepage BestOffer v1",

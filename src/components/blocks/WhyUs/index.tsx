@@ -1,8 +1,16 @@
 import React from "react";
 
-type WhyUsProps = { heading: string; points: { title: string; desc?: string }[] };
-const WhyUs = ({ heading, points }: WhyUsProps) => (
-  <section id="why-us" className="relative mx-auto max-w-7xl px-6 py-20 scroll-mt-24">
+type WhyUsProps = { 
+  heading: string; 
+  points: { title: string; desc?: string }[];
+  // Style props
+  bg?: string;
+  fg?: string;
+  variant?: "solid" | "outline" | "minimal";
+  align?: "left" | "center";
+};
+const WhyUs = ({ heading, points, bg = "bg-white", fg = "text-gray-900", variant = "solid", align = "left" }: WhyUsProps) => (
+  <section id="why-us" className={`relative mx-auto max-w-7xl px-6 py-20 scroll-mt-24 ${bg} ${fg} ${align === "center" ? "text-center" : "text-left"} ${variant === "outline" ? "border border-gray-200" : variant === "minimal" ? "bg-transparent" : ""}`}>
     <div className="text-center mb-16">
       <h2 className="text-4xl md:text-5xl font-bold tracking-tight bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent leading-tight">
         {heading}
